@@ -5,6 +5,12 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item ></button>
+    <ng-container *ngIf="!service.isLoggedIn(); else notLoggedIn">
+      <button mat-menu-item (click)="login()">Login</button>
+      <button mat-menu-item (click)="register()">Register</button>
+    </ng-container>
+    <ng-template #notLoggedIn>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </ng-template>
   </mat-menu>
 </mat-toolbar>

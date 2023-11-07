@@ -18,12 +18,12 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService service;
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public ResponseEntity addNewUser(@RequestBody User userInfo) {
         return new ResponseEntity(service.addNewUser(userInfo), HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseEntity login(@RequestBody AuthRequest request) {
         return new ResponseEntity(service.login(request), HttpStatus.OK);
     }
