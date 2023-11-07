@@ -34,6 +34,17 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 		</dependency>
+		<dependency>
+			<groupId>com.vividsolutions</groupId>
+			<artifactId>jts</artifactId>
+			<version>1.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-spatial</artifactId>
+			<!--<version>5.2.16.Final</version>-->
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -55,6 +66,12 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.2</version> <!-- Use the latest version available -->
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.5</version> <!-- Use the latest version available -->
 		</dependency>
 
 

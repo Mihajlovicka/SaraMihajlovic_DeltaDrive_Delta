@@ -6,8 +6,11 @@ spring:
 
   jpa:
     hibernate:
-      dialect: org.hibernate.dialect.MySQLDialect
       ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.spatial.dialect.mysql.MySQL56InnoDBSpatialDialect
+      hibernate.spatial.enabled: true
+
 
 
 token:
