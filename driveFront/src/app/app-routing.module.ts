@@ -5,12 +5,14 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {authGuard} from "./_auth/auth.guard";
 import {ForbiddenComponent} from "./forbidden/forbidden.component";
+import {NearestVehiclesComponent} from "./nearest-vehicles/nearest-vehicles.component";
 
 const routes: Routes = [
   {path:'', component: HomeComponent, canActivate: [authGuard]},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'forbidden', component: ForbiddenComponent},
+  {path:'nearest', component: NearestVehiclesComponent, canActivate: [authGuard]},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

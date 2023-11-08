@@ -17,6 +17,7 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
+    @Embedded
     private Driver driver;
     private double startPrice;
     private double pricePerKm;

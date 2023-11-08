@@ -1,5 +1,6 @@
 package com.example.driveBack.controller;
 
+import com.example.driveBack.dto.VehiclePreview;
 import com.example.driveBack.model.Position;
 import com.example.driveBack.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,19 @@ public class VehicleController {
     @Autowired
     VehicleService rideService;
 
-    @GetMapping("get-nearest/{latitude}/{longitude}")
-    public ResponseEntity getNearest(@PathVariable double latitude, @PathVariable double longitude) {
-        return new ResponseEntity<>(rideService.getNearest(new Position(latitude, longitude)
+    @GetMapping("get-nearest/{latitude}/{longitude}/{newLatitude}/{newLongitude}")
+    public ResponseEntity getNearest(@PathVariable double latitude, @PathVariable double longitude,
+                                     @PathVariable double newLatitude, @PathVariable double newLongitude) {
+        return new ResponseEntity<>(rideService.getNearest(
+                new Position(latitude, longitude),
+                new Position(newLatitude, newLongitude)
+        ), HttpStatus.OK);
+    }
+
+    @PostMapping("book-vehicle")
+    public ResponseEntity bookVehicle(@RequestBody VehiclePreview vehiclePreview) {
+        return new ResponseEntity<>(rideService.bookVehicle(
+                vehiclePreview
         ), HttpStatus.OK);
     }
 }

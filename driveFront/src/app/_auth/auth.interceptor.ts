@@ -40,7 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   }
 
-  private addToken(req: HttpRequest<any>, token: string | null){
+  private addToken(req: HttpRequest<any>, token: string){
     return req.clone(
       {
         setHeaders:{

@@ -21,6 +21,12 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {ForbiddenComponent} from "./forbidden/forbidden.component";
 import {AuthInterceptor} from "./_auth/auth.interceptor";
+import { RideLocationComponent } from './ride-location/ride-location.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatCardModule} from "@angular/material/card";
+import { RideRequestComponent } from './ride-request/ride-request.component';
+import {VehicleService} from "./service/vehicle.service";
+import { NearestVehiclesComponent } from './nearest-vehicles/nearest-vehicles.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,10 @@ import {AuthInterceptor} from "./_auth/auth.interceptor";
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    RideLocationComponent,
+    RideRequestComponent,
+    NearestVehiclesComponent
   ],
   imports: [
     HttpClientModule,
@@ -45,8 +54,10 @@ import {AuthInterceptor} from "./_auth/auth.interceptor";
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
+    MatCardModule,
   ],
-  providers: [UserService,
+  providers: [UserService,VehicleService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -31,8 +31,10 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests(request -> request.antMatchers("/auth/**")
-						.permitAll().anyRequest().authenticated())
+				.authorizeRequests().
+						antMatchers("/auth/**")
+						.permitAll().anyRequest().authenticated().and()
+						.cors().and()
 				.sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
 				.authenticationProvider(authenticationProvider()).addFilterBefore(
 						authFilter, UsernamePasswordAuthenticationFilter.class);

@@ -13,11 +13,11 @@ export class UserService {
   }
 
   register(user: User) {
-     return this.http.post(this.host + "register", user)
+     return this.http.post(`${this.host}register`, user)
   }
 
   login(email: string, password: string) {
-    return this.http.post(this.host + "login", {email: email, password: password}).pipe(
+    return this.http.post(`${this.host}login`, {email: email, password: password}).pipe(
       map((response: any) => {
         localStorage.setItem("email", response.email)
         localStorage.setItem("jwt", response.jwt)

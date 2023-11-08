@@ -1,23 +1,17 @@
 .homepage {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  height: 100vh; /* Optional: Set the height of the homepage to the full viewport height */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .centered {
-  text-align: center; /* Optional: Center the text inside the centered div */
+  text-align: center;
 }
 
 .buttons {
   display: flex;
-  flex-direction: row; /* Stack buttons vertically */
+  flex-direction: row;
 
 }
 
-.button{
-  background-color: #cccccc;
-  padding: 1rem 2rem;
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
-}
