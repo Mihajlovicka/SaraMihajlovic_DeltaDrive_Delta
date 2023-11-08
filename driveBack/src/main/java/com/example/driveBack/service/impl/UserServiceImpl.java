@@ -7,6 +7,7 @@ import com.example.driveBack.model.VehicleState;
 import com.example.driveBack.repo.UserRepository;
 import com.example.driveBack.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +29,11 @@ public class UserServiceImpl implements UserService {
 						.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 			}
 		};
+	}
+
+	@Override
+	public User getLoggedIn() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 
 }

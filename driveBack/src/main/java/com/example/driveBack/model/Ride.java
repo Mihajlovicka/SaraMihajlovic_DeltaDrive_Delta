@@ -1,5 +1,6 @@
 package com.example.driveBack.model;
 
+import com.example.driveBack.dto.RideDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,9 +30,17 @@ public class Ride {
     @OneToOne
     private Rating rating;
     private double totalPrice;
+    private double totalDistance;
     @ManyToOne
     private Vehicle vehicle;
     @ManyToOne
     private User user;
 
+
+    public Ride(RideDTO rideDTO){
+        totalDistance = rideDTO.getTotalDistance();
+        totalPrice = rideDTO.getTotalPrice();
+        startPosition = rideDTO.getStartPosition();
+        endPosition = rideDTO.getEndPosition();
+    }
 }

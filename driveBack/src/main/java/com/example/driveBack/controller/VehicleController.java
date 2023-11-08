@@ -1,5 +1,6 @@
 package com.example.driveBack.controller;
 
+import com.example.driveBack.dto.RideDTO;
 import com.example.driveBack.dto.VehiclePreview;
 import com.example.driveBack.model.Position;
 import com.example.driveBack.service.VehicleService;
@@ -25,9 +26,9 @@ public class VehicleController {
     }
 
     @PostMapping("book-vehicle")
-    public ResponseEntity bookVehicle(@RequestBody VehiclePreview vehiclePreview) {
+    public ResponseEntity bookVehicle(@RequestBody RideDTO ridePreview) {
         return new ResponseEntity<>(rideService.bookVehicle(
-                vehiclePreview
+                ridePreview
         ), HttpStatus.OK);
     }
 }

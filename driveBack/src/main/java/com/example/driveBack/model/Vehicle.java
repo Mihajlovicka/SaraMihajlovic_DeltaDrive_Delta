@@ -1,10 +1,10 @@
 package com.example.driveBack.model;
 
-import com.vividsolutions.jts.geom.Point;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 
@@ -17,12 +17,11 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
-    @Embedded
     private Driver driver;
     private double startPrice;
     private double pricePerKm;
     private VehicleState state = VehicleState.FREE;
-    @Column(columnDefinition = "POINT")
+    @Column(columnDefinition = "Point")
     private Point currentPosition;
 
 }

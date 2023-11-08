@@ -13,12 +13,12 @@ export class VehicleService {
   constructor(private http: HttpClient) {
   }
 
-  getNearest(lat1: number,lng1: number, lat2: number, lng2: number) {
-    const url = `${this.host}get-nearest/${lat1}/${lng1}/${lat2}/${lng2}`;
+  getNearest(currentP:Position, newP:Position) {
+    const url = `${this.host}get-nearest/${currentP.latitude}/${currentP.longitude}/${newP.latitude}/${newP.longitude}`;
     return this.http.get<VehiclePreviewI[]>(url)
   }
 
-  bookTaxi(vehicle: VehiclePreview) {
-    return this.http.post(`${this.host}book-vehicle`,vehicle)
+  bookTaxi(ride: any) {
+    return this.http.post(`${this.host}book-vehicle`,ride)
   }
 }

@@ -14,5 +14,7 @@ public class RideDTO {
     private Position startPosition;
     private Position endPosition;
     private String email;
-    private List<VehiclePreviewI> nearest;
+    private Long rideId;
+    private double totalPrice;
+    private double totalDistance;
 }
