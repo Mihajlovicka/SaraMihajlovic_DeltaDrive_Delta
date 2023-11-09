@@ -10,6 +10,8 @@
       <button mat-menu-item (click)="register()">Register</button>
     </ng-container>
     <ng-template #notLoggedIn>
+      <button mat-menu-item (click)="home()">Get Taxi</button>
+      <button mat-menu-item (click)="allRides()">All Rides</button>
       <button mat-menu-item (click)="logout()">Logout</button>
     </ng-template>
   </mat-menu>

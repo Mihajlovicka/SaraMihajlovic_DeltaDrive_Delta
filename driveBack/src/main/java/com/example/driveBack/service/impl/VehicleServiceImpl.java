@@ -3,6 +3,7 @@ package com.example.driveBack.service.impl;
 import com.example.driveBack.dto.RideDTO;
 import com.example.driveBack.dto.VehiclePreview;
 import com.example.driveBack.dto.VehiclePreviewI;
+import com.example.driveBack.exception.NotFoundException;
 import com.example.driveBack.model.Driver;
 import com.example.driveBack.model.Position;
 import com.example.driveBack.model.Vehicle;
@@ -58,7 +59,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle getVehicle(Long id) {
-        return vehicleRepository.findById(id).orElseThrow(() -> new EntityExistsException("Vehicle does not exist."));
+        return vehicleRepository.findById(id).orElseThrow(() -> new NotFoundException("Vehicle does not exist."));
     }
 
     private void bookRealVehicle(Long id) {

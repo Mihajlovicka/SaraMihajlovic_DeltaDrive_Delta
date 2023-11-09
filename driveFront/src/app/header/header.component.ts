@@ -28,6 +28,10 @@ export class HeaderComponent {
   logout()
   {
     this.service.logOut()
-    this.router.navigate(['']);
+    this.home()
+  }
+
+  allRides() {
+    this.router.navigate(['/rides']);
   }
 }

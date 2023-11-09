@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {VehicleService} from "../service/vehicle.service";
 import {VehiclePreview} from "../model/vehicle-preview";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Position} from "../model/vehicle";
 
 @Component({
@@ -14,7 +14,9 @@ export class NearestVehiclesComponent{
   currentP: Position |undefined;
   newP: Position |undefined;
 
-  constructor(private service: VehicleService, private route: ActivatedRoute) {
+  constructor(private service: VehicleService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.route.queryParams.subscribe(params => {
       this.currentP = {
         latitude:params['lat1'],
@@ -52,8 +54,10 @@ export class NearestVehiclesComponent{
     }
     this.service.bookTaxi(ride).subscribe({
       next: (resp) => {
-        if(resp)
-         alert("Taxi is on it's way!")
+        if(resp) {
+          alert("Taxi is on it's way!");
+          this.router.navigate(['/rides']);
+        }
         else
           alert("Driver has rejected this request!")
       }

@@ -27,6 +27,9 @@ import {MatCardModule} from "@angular/material/card";
 import { RideRequestComponent } from './ride-request/ride-request.component';
 import {VehicleService} from "./service/vehicle.service";
 import { NearestVehiclesComponent } from './nearest-vehicles/nearest-vehicles.component';
+import { RidesComponent } from './rides/rides.component';
+import {RideService} from "./service/ride.service";
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { NearestVehiclesComponent } from './nearest-vehicles/nearest-vehicles.co
     ForbiddenComponent,
     RideLocationComponent,
     RideRequestComponent,
-    NearestVehiclesComponent
+    NearestVehiclesComponent,
+    RidesComponent,
+    RatingComponent
   ],
   imports: [
     HttpClientModule,
@@ -57,7 +62,7 @@ import { NearestVehiclesComponent } from './nearest-vehicles/nearest-vehicles.co
     MatDialogModule,
     MatCardModule,
   ],
-  providers: [UserService,VehicleService,
+  providers: [UserService,VehicleService,RideService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
