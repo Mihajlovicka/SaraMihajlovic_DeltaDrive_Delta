@@ -1,5 +1,7 @@
 package com.example.driveBack.controller;
+import com.example.driveBack.exception.ForeignApiRequestException;
 import com.example.driveBack.exception.NotFoundException;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,6 +33,10 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ForeignApiRequestException.class)
+    public ResponseEntity<String> handleCustomException(ForeignApiRequestException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }
 

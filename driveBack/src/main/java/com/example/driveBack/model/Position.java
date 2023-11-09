@@ -12,10 +12,4 @@ import javax.persistence.Embeddable;
 public class Position {
     private double latitude;
     private double longitude;
-
-    public String point(){
-        return String.format("POINT(%s %s)",latitude, longitude);
-    }
-
-
 }

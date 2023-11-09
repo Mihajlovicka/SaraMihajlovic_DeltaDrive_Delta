@@ -51,3 +51,14 @@ export class RidesComponent implements  OnInit{
     });
   }
 }
+
+//simulation se kreira kada se naoravi ride
+//simulation vehicle, steps,
+//steps se brisu kad prodje
+//kad se isprazni voznje finicshe, driver free, simlation remove
+
+
+//ako auto ide 60km/h izracunam koliko treba km da pradje za 5s
+//uzimam koordinate redom x y izracunam razdaljinu
+  //ako je razdaljina manja dodam sl tacku
+    //na kraju ga prebacim na novu kooridnu
