@@ -1,5 +1,6 @@
 package com.example.driveBack.controller;
 
+import com.example.driveBack.dto.RideDTO;
 import com.example.driveBack.model.Position;
 import com.example.driveBack.model.Rating;
 import com.example.driveBack.model.Ride;
@@ -30,4 +31,9 @@ public class RideController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("new")
+    public ResponseEntity newRide(@RequestBody RideDTO rideDTO) {
+        rideService.newRide(rideDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

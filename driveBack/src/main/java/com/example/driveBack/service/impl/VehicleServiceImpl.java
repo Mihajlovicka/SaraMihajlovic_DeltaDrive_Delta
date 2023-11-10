@@ -8,7 +8,6 @@ import com.example.driveBack.model.Position;
 import com.example.driveBack.model.Vehicle;
 import com.example.driveBack.model.VehicleState;
 import com.example.driveBack.repo.VehicleRepository;
-import com.example.driveBack.service.RideService;
 import com.example.driveBack.service.VehicleService;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
@@ -24,8 +23,6 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Autowired
     VehicleRepository vehicleRepository;
-    @Autowired
-    RideService rideService;
 
     @Override
     public List<VehiclePreview> getNearest(Position currentPosition, Position newPosition) {
@@ -47,10 +44,8 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public boolean bookVehicle(RideDTO rideDTO) {
         boolean notRejected = simulateTaxiRejectChance();
-        if(notRejected) {
+        if(notRejected)
             bookRealVehicle(rideDTO.getRideId());
-            rideService.newRide(rideDTO);
-        }
         return notRejected;
     }
 

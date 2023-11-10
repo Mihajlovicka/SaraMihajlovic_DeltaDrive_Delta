@@ -31,14 +31,12 @@ public class RoutingServiceImpl implements RoutingService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode routeResponse = objectMapper.readTree(responseJson);
 
-            JsonNode steps = routeResponse.get("routes").get(0).get("legs").get(0).get("steps");
-            for(JsonNode step: steps){
-                JsonNode coordinates = step.get("geometry").get("coordinates");
-                for (JsonNode coordinate : coordinates) {
-                    double latitude = coordinate.get(0).asDouble();
-                    double longitude = coordinate.get(1).asDouble();
-                    positions.add(new Position(latitude, longitude));
-                }
+            JsonNode coordinates = routeResponse.get("routes").get(0).get("geometry").get("coordinates");
+
+            for (JsonNode coordinate : coordinates) {
+                double latitude = coordinate.get(0).asDouble();
+                double longitude = coordinate.get(1).asDouble();
+                positions.add(new Position(latitude, longitude));
             }
 
         } catch (Exception e) {
@@ -72,7 +70,7 @@ public class RoutingServiceImpl implements RoutingService {
         return baseURL + departure.getLongitude() + "," + departure.getLatitude() +
                 ";" + stop.getLongitude() + "," + stop.getLatitude() +
                 ";" + destination.getLongitude() + "," + destination.getLatitude() +
-                "?geometries=geojson&overview=false&steps=true&continue_straight=true";
+                "?geometries=geojson&overview=simplified&steps=false&continue_straight=true";
     }
 
 }

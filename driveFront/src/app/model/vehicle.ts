@@ -4,7 +4,7 @@ export interface PositionI{
 }
 
 export class Position implements PositionI{
-  latitude:number = 45.4;
-  longitude:number = 19.60;
+  latitude:number = 45.249427;
+  longitude:number = 19.825864;
 }
 

@@ -3,6 +3,7 @@ import {VehicleService} from "../service/vehicle.service";
 import {VehiclePreview} from "../model/vehicle-preview";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Position} from "../model/vehicle";
+import {RideService} from "../service/ride.service";
 
 @Component({
   selector: 'app-nearest-vehicles',
@@ -15,6 +16,7 @@ export class NearestVehiclesComponent{
   newP: Position |undefined;
 
   constructor(private service: VehicleService,
+              private rideService: RideService,
               private route: ActivatedRoute,
               private router: Router) {
     this.route.queryParams.subscribe(params => {
@@ -55,12 +57,15 @@ export class NearestVehiclesComponent{
     this.service.bookTaxi(ride).subscribe({
       next: (resp) => {
         if(resp) {
-          alert("Taxi is on it's way!");
-          this.router.navigate(['/rides']);
+          this.rideService.newRide(ride).subscribe({
+            next: () => {alert("Taxi is on it's way!");
+              this.router.navigate(['/rides']);}
+          })
         }
         else
           alert("Driver has rejected this request!")
-      }
+      },
+      error: (err) => alert(err.error.message)
     });
   }
 }

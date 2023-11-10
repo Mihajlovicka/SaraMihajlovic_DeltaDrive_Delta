@@ -21,4 +21,8 @@ export class RideService {
   rate(id: number, data: Rating) {
     return this.http.patch(`${this.host}rate/${id}`, data)
   }
+
+  newRide(ride:  any) {
+    return this.http.post(`${this.host}new`, ride)
+  }
 }

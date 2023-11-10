@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class RideServiceImpl implements RideService {
-    @Autowired@Lazy
+    @Autowired
     VehicleService vehicleService;
     @Autowired
     UserService userService;
@@ -29,6 +29,7 @@ public class RideServiceImpl implements RideService {
     RideSimulationService rideSimulationService;
     @Autowired
     PositionRepository positionRepository;
+
     @Override
     public void newRide(RideDTO rideDTO) {
         Ride ride = makeRide(rideDTO);

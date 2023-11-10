@@ -47,7 +47,12 @@ export class RidesComponent implements  OnInit{
       next: (r) => {
         this.rides = r
         console.log(this.rides)
+        this.sort()
       }
     });
+  }
+
+  private sort() {
+    this.rides.sort((a, b) => b.id - a.id);
   }
 }

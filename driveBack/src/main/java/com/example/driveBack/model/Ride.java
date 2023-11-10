@@ -27,7 +27,7 @@ public class Ride {
     private Rating rating;
     private double totalPrice;
     private double totalDistance;
-    @ManyToOne
+    @ManyToOne@JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
     @ManyToOne
     private User user;
