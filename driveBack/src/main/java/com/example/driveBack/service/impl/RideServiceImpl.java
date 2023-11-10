@@ -4,6 +4,7 @@ import com.example.driveBack.dto.RideDTO;
 import com.example.driveBack.dto.RidePreview;
 import com.example.driveBack.exception.NotFoundException;
 import com.example.driveBack.model.*;
+import com.example.driveBack.repo.PositionRepository;
 import com.example.driveBack.repo.RatingRepository;
 import com.example.driveBack.repo.RideRepository;
 import com.example.driveBack.service.*;
@@ -11,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +27,8 @@ public class RideServiceImpl implements RideService {
     RatingRepository ratingRepository;
     @Autowired
     RideSimulationService rideSimulationService;
-
+    @Autowired
+    PositionRepository positionRepository;
     @Override
     public void newRide(RideDTO rideDTO) {
         Ride ride = makeRide(rideDTO);
@@ -39,6 +39,7 @@ public class RideServiceImpl implements RideService {
         Ride ride = new Ride(rideDTO);
         ride.setVehicle(vehicleService.getVehicle(rideDTO.getRideId()));
         ride.setUser(userService.getLoggedIn());
+        positionRepository.saveAll(List.of(ride.getStartPosition(), ride.getEndPosition()));
         rideRepository.save(ride);
         return ride;
     }
@@ -57,5 +58,12 @@ public class RideServiceImpl implements RideService {
         r.setRating(rating);
         ratingRepository.save(rating);
         rideRepository.save(r);
+    }
+
+    @Override
+    public void endRide(Ride ride) {
+        ride.setState(RideState.FINISHED);
+        rideRepository.save(ride);
+        vehicleService.freeUpDriver(ride.getVehicle());
     }
 }

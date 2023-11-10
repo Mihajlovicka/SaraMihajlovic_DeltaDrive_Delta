@@ -10,6 +10,9 @@ import com.example.driveBack.model.VehicleState;
 import com.example.driveBack.repo.VehicleRepository;
 import com.example.driveBack.service.RideService;
 import com.example.driveBack.service.VehicleService;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +57,24 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Vehicle getVehicle(Long id) {
         return vehicleRepository.findById(id).orElseThrow(() -> new NotFoundException("Vehicle does not exist."));
+    }
+
+    @Override
+    public void updatePosition(Vehicle vehicle, Position position) {
+        vehicle.setCurrentPosition(makePoint(position));
+        vehicleRepository.save(vehicle);
+    }
+
+    @Override
+    public void freeUpDriver(Vehicle vehicle) {
+        vehicle.setState(VehicleState.FREE);
+        vehicleRepository.save(vehicle);
+    }
+
+    private Point makePoint(Position position) {
+        GeometryFactory geometryFactory = new GeometryFactory();
+        Coordinate coordinate = new Coordinate(position.getLongitude(), position.getLatitude());
+        return geometryFactory.createPoint(coordinate);
     }
 
     private void bookRealVehicle(Long id) {

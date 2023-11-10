@@ -17,7 +17,10 @@ public class RideSimulation {
     private Long id;
     @OneToOne
     private Ride ride;
-    @ElementCollection
+    @OneToMany(
+            cascade= CascadeType.ALL,
+            orphanRemoval = true)
+    @OrderColumn
     private List<Position> positions;
 
     public RideSimulation(Ride ride, List<Position> positions) {

@@ -7,8 +7,8 @@
         <p><strong>Driver </strong>{{ vehicle.driver.firstName }} {{ vehicle.driver.lastName }}</p>
       </div>
       <div class="distance-info">
-        <p>Total KM: {{ vehicle.totalDistance }}</p>
-        <p>Total Price: {{ vehicle.totalPrice }}</p>
+        <p>Distance: {{ vehicle.totalDistance | number:'1.2-2' }} km</p>
+        <p>Total Price: {{ vehicle.totalPrice | number:'1.2-2' }} EUR</p>
       </div>
       <button mat-button (click)="bookTaxi(vehicle)">GET TAXI</button>
     </div>

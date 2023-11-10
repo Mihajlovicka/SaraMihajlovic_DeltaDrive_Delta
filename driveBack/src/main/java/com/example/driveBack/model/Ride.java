@@ -19,17 +19,9 @@ public class Ride {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "latitude", column = @Column(name = "start_latitude")),
-            @AttributeOverride(name = "longitude", column = @Column(name = "start_longitude"))
-    })
+    @OneToOne
     private Position startPosition;
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "latitude", column = @Column(name = "end_latitude")),
-            @AttributeOverride(name = "longitude", column = @Column(name = "end_longitude"))
-    })
+    @OneToOne
     private Position endPosition;
     @OneToOne
     private Rating rating;

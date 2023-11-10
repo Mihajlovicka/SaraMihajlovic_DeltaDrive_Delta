@@ -11,7 +11,7 @@
         <p><strong>End:</strong> {{ ride.endPosition.latitude }}, {{ ride.endPosition.longitude }}</p>
       </div>
       <div class="info">
-        <p><strong>Total KM:</strong> {{ ride.totalDistance | number:'1.2-2'}}</p>
+        <p><strong>Distance:</strong> {{ ride.totalDistance | number:'1.2-2'}} km</p>
         <p><strong>Total Price: </strong>{{ ride.totalPrice | number:'1.2-2' }} EUR</p>
       </div>
       <div class="info">
@@ -19,7 +19,7 @@
         <p><strong>Date </strong>{{ ride.createdAt | date: 'dd/MM/yyyy HH:mm' }}</p>
       </div>
       <div class="info" *ngIf="ride.state.toString() === 'FINISHED'">
-        <ng-container *ngIf="ride.rating === undefined; else rating">
+        <ng-container *ngIf="ride.rating === null; else rating">
           <button mat-button (click)="rate(ride.id)">Leave rating</button>
         </ng-container>
         <ng-template #rating>

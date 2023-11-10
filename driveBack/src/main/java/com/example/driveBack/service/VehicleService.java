@@ -14,4 +14,8 @@ public interface VehicleService {
     boolean bookVehicle(RideDTO ridePreview);
 
     Vehicle getVehicle(Long rideId);
+
+    void updatePosition(Vehicle vehicle, Position position);
+
+    void freeUpDriver(Vehicle vehicle);
 }
